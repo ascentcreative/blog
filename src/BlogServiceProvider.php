@@ -13,7 +13,7 @@ class BlogServiceProvider extends ServiceProvider
     //
    
     $this->mergeConfigFrom(
-        __DIR__.'/config/blog.php', 'blog'
+        __DIR__.'/../config/blog.php', 'blog'
     );
 
   }
@@ -21,9 +21,11 @@ class BlogServiceProvider extends ServiceProvider
   public function boot()
   {
 
-    $this->loadViewsFrom(__DIR__.'/resources/views', 'blog');
+    $this->bootPublishes();
 
-    $this->loadRoutesFrom(__DIR__.'/routes/web.php');
+   $this->loadViewsFrom(__DIR__.'/../resources/views', 'blog');
+
+   $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 
     $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
@@ -50,7 +52,7 @@ class BlogServiceProvider extends ServiceProvider
       ], 'public');
 
       $this->publishes([
-        __DIR__.'/config/blog.php' => config_path('blog.php'),
+        __DIR__.'/../config/blog.php' => config_path('blog.php'),
       ]);
 
     }
