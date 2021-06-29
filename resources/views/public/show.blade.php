@@ -6,7 +6,7 @@
 
 @section('pagecontent')
 
-        <div class="contentgrid @if( $model->panels && ($model->panels->count() > 0) ) has-sidebar @endif">
+        <div class="contentgrid has-sidebar @if( $model->panels && ($model->panels->count() > 0) ) has-sidebar @endif">
 
             <div class="content">
 

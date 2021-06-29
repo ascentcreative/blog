@@ -21,7 +21,7 @@ class SetupBlogTables extends Migration
             $table->string('slug')->index();
            
             $table->text('content');
-            $table->text('summary');
+            $table->text('summary')->nullable();
 
             $table->integer('type_id')->nullable()->index();
 
