@@ -11,38 +11,43 @@ use Illuminate\Database\Eloquent\Model;
 class PostController extends AdminBaseController
 {
 
-    static $modelClass = 'AscentCreative\Blog\Models\Post';
+    //static $modelClass = 'AscentCreative\Blog\Models\Post';
+    static $modelClass = 'Post';
     static $bladePath = "blog::admin.posts";
 
-    public $indexSort = 'title';
+    public $indexSort = [ ['publish_start', 'DESC'], ['created_at', 'DESC'], 'title'];
     public $indexSearchFields = ['title', 'content'];
+
+    public $ignoreScopes = ['published'];
 
     public function commitModel(Request $request, Model $model)
     {
 
-      
-    //    MenuItem::linkThis($this, $request->context_id, $request->context_type);
-      //  dd(request()->all());
-      
+        //dd(request()->all());
+
+
+
       // $model->fillExtenders($request->all());
-       $model->fill($request->all());
-       $model->save();
+        $model->fill($request->all());
+        $model->save();
 
-     //  dd($request->all());
+        $model->authors()->sync($request->authors);
 
+        // tags:
+        // ideally this would be handled in a trait etc, but while we work it out, we'll add it here
+        $tags = array();
 
-       // $Fillable prevents non-model data being sent to the DB.
-       // Now we've got the model saved, we can fire off the extensions to other models / relationships
-       // Would really love to make this configurable (like model plugins on Zend)
+        // first of all, save any new tags by running findOrCreate on the array
+        if(is_array($request->tags)) {
+            foreach($request->tags as $incoming) {
+                $tag = \AscentCreative\Blog\Models\Tag::firstOrCreate($incoming);
+                $tags[] = $tag->id;
+            }
+        }
 
-       // problem is that starts to relate to adding fields directly to the edit screen with names to 
-       // match expected incoming data, and that's where ModelPlugins got hugely complex.
-       // But there's a reason I went that way with the strucutre...
+        // then sync the resulting array to the model
+        $model->tags()->sync($tags);
 
-       
-
-        //dd($incoming);
-       
     }
     
 
@@ -51,16 +56,32 @@ class PostController extends AdminBaseController
 
        return [
             'title' => 'required',
+            'type_id' => 'required',
         ]; 
 
     }
 
 
-    public function autocomplete(Request $request, string $term) {
+    public function autocomplete(Request $request) {
 
-        echo $term;
-
-    }
+        // Should this be encapsulated in a 'search' method on the model?
+         //  - would allow all search formats to always use the same fields. Handy for the index filters. 
+         $term = $request->term;
+         $cls = $this::$modelClass;
+         $data = $cls::where('title', 'like', '%' . $term . '%')
+                         ->get();
+ 
+         // Can't easily concat fields etc without making a raw query
+         // Not keen on that for security, so we'll loop and assign the label here.
+         // Plus, we get the benefit of using the model accessor.
+         foreach($data as $row) {   
+             $row->makeVisible('id');
+             $row['label'] = $row->title;
+         }
+ 
+         return $data;
+ 
+     }
 
 
 

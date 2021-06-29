@@ -15,13 +15,20 @@ class SetupBlogTables extends Migration
     {
         //
         Schema::create('blog_posts', function(Blueprint $table) {
+            
             $table->id();
             $table->string('title');
             $table->string('slug')->index();
-            $table->timestamp('publish_date')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
-            $table->integer('published')->index();
+           
             $table->text('content');
             $table->text('summary');
+
+            $table->integer('type_id')->nullable()->index();
+
+            $table->timestamp('publish_start')->nullable()->index();
+            $table->timestamp('publish_end')->nullable()->index();
+            $table->integer('publishable')->index();
+
             $table->timestamps();
         });
 
@@ -43,7 +50,7 @@ class SetupBlogTables extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->index();
-            $table->text('bio');
+            $table->text('bio')->nullable();
             $table->timestamps();
         });
 
@@ -55,17 +62,10 @@ class SetupBlogTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('blog_sections', function(Blueprint $table) {
+        Schema::create('blog_types', function(Blueprint $table) {
             $table->id();
-            $table->string('section');
+            $table->string('type');
             $table->string('slug')->index();
-            $table->timestamps();
-        });
-
-        Schema::create('blog_post_sections', function(Blueprint $table) {
-            $table->id();
-            $table->integer('post_id')->index();
-            $table->integer('section_id')->index();
             $table->timestamps();
         });
 
@@ -81,11 +81,11 @@ class SetupBlogTables extends Migration
         //
         Schema::drop('blog_posts');
         Schema::drop('blog_tags');
-        Schema::drop('blog_sections');
+        Schema::drop('blog_types');
         Schema::drop('blog_authors');
         Schema::drop('blog_post_tags');
         Schema::drop('blog_post_authors');
-        Schema::drop('blog_post_sections');
+
 
 
     }

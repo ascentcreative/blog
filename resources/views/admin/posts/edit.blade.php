@@ -4,9 +4,38 @@
 
 <div class="cms-screenblock cms-screenblock-main bg-white rounded shadow" style="">
    
-    <x-cms-form-input type="text" name="title" label="Title" value="{{ old('title', $model->title) }}">
-        The title of the post
-    </x-cms-form-input>
+    <div class="flex flex-nowrap">
+        
+        <div class="flex-grow" style="flex-grow: 1">
+            
+            <x-cms-form-input type="text" name="title" label="Title" value="{{ old('title', $model->title) }}">
+                The title of the post
+            </x-cms-form-input>
+
+            <x-cms-form-foreignkeyselect type="select" name="type_id" label="Post Type" value="{{ old('type_id', $model->type_id) }}"
+                :query="AscentCreative\Blog\Models\Type::query()" labelField="type" nullItemLabel="Please Select" sortField="type"
+                >
+            </x-cms-form-foreignkeyselect>
+
+            <x-cms-form-pivotlist name="authors" label="Authors" :value="old('authors', $model->authors)"
+                labelField="name"
+                :optionRoute="action(['AscentCreative\Blog\Controllers\Admin\AuthorController', 'autocomplete'])"
+                optionModel="AscentCreative\Blog\Models\Author"
+                :dataval="$model->authors"
+                sortField="sort"
+                >    
+            </x-cms-form-pivotlist>
+
+            <x-cms-form-relatedtokens name="tags" label="Tags" value="{{ old('tags', $model->tags) }}" relationship="tags" />
+
+            <x-cms-form-textarea name="summary" label="Summary" value="{{ old('summary', $model->summary) }}" />
+
+        </div>
+
+        @includeFirst($model->getTraitBlades('Publishable'))
+        
+        
+    </div>
 
 </div>
 
@@ -15,16 +44,16 @@
 
     <ul class="nav nav-tabs px-3 pt-3 bg-light" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link" id="main-tab" data-toggle="tab" href="#page" role="tab" aria-controls="page" aria-selected="true">Page Content</a>
+          <a class="nav-link" id="main-tab" data-toggle="tab" href="#page" role="tab" aria-controls="page" aria-selected="true">Post Content</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" id="headimg-tab" data-toggle="tab" href="#headimg" role="tab" aria-controls="headimg" aria-selected="false">Images</a>
           </li>
         <li class="nav-item">
-          <a class="nav-link" id="menuitem-tab" data-toggle="tab" href="#menuitem" role="tab" aria-controls="menuitem" aria-selected="false">Menu Position</a>
+            <a class="nav-link" id="metadata-tab" data-toggle="tab" href="#metadata" role="tab" aria-controls="metadata" aria-selected="false">Metadata</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="metadata-tab" data-toggle="tab" href="#metadata" role="tab" aria-controls="metadata" aria-selected="false">Metadata</a>
+            <a class="nav-link" id="extra-tab" data-toggle="tab" href="#extra" role="tab" aria-controls="extra" aria-selected="false">Extra</a>
         </li>
     </ul>
 
@@ -60,23 +89,29 @@
 
         </div>
 
-        {{-- <div class="tab-pane show p-3" id="headimg" role="tabpanel" aria-labelledby="headimg-tab">
+       <div class="tab-pane show p-3" id="headimg" role="tabpanel" aria-labelledby="headimg-tab">
 
             @includeFirst($model->getTraitBlades('HasImages'))
 
-        </div>
+        </div> 
 
-        <div class="tab-pane show p-3" id="menuitem" role="tabpanel" aria-labelledby="menuitem-tab">
-
-            @includeFirst($model->getTraitBlades('HasMenuItem'))
-
-        </div>
 
         <div class="tab-pane show p-3" id="metadata" role="tabpanel" aria-labelledby="metadata-tab">
 
             @includeFirst($model->getTraitBlades('HasMetadata'))
 
-        </div> --}}
+        </div> 
+
+        <div class="tab-pane show p-3" id="extra" role="tabpanel" aria-labelledby="extra-tab">
+            @if(method_exists($model, 'getTraitBlades')) 
+            @foreach($model->getTraitBlades() as $blade)
+                {{-- <div class="cms-screenblock bg-white rounded shadow" style=""> --}}
+                    @includefirst($blade)
+                {{-- </div> --}}
+            @endforeach
+        @endif
+
+        </div> 
 
     </div>
 

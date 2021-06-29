@@ -6,11 +6,7 @@
   
         <tr>
             
-            <th></th>
-
-            <th width="">Post Title</th>
-
-            <th colspan="3">Publishing</th>
+            <th width="">Name</th>
 
             <th></th>
 
@@ -25,22 +21,9 @@
     
     @foreach ($models as $item)
     
-    <tr class="indexitem {{ $item->isPublished ? 'published' : 'hidden' }}">
+        <tr class="indexitem">
 
-            <td width="0"><span class="badge">{{ $item->type->type }}</span></td>
-
-            <td class="title" width="100%"><a href="{{ action([controller(), 'edit'], [$modelInject => $item->id]) }}">{{$item->title}}</a></td>
-
-            {{-- <td>
-                {{ $item->publish_status }}
-            </td> --}}
-
-            <td>
-                {!! $item->publish_status_icon !!}
-            </td>
-
-            <td style="white-space: nowrap">{{ $item->publish_start ?? 'Immediate'}}</td>
-            <td style="white-space: nowrap">{{ $item->publish_end ?? 'Indefinite' }}</td>
+            <td class="title" width="100%"><a href="{{ action([controller(), 'edit'], [$modelInject => $item->id]) }}">{{$item->name}}</a></td>
 
             <td width="0"> 
                 <div class="btn-group dropleft">

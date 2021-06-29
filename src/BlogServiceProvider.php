@@ -16,6 +16,29 @@ class BlogServiceProvider extends ServiceProvider
         __DIR__.'/../config/blog.php', 'blog'
     );
 
+    $this->mergeConfigFrom(
+        __DIR__.'/../config/blog.models.php', 'blog.models'
+    );
+
+    $aliases = array();
+
+    // subclassable models:
+    // For each model:
+    // 1) Set up an alias for the Facade (allows Page::method() calls)
+    $aliases['Post'] = \AscentCreative\Blog\Facades\PostFacade::class;
+
+    // 2) resolve the key in getFacadeAccessor()
+    $this->app->bind('post',function(){
+        $cls = config('blog.models.post');
+        return new $cls();
+    });
+
+    // 3) Use Interface/Implementation binding to allow TypeHinting to resolve the right class.
+    $this->app->bind(\AscentCreative\Blog\Models\Post::class, $cls = config('blog.models.post'));
+
+    // bind the aliases...
+    $loader = \Illuminate\Foundation\AliasLoader::getInstance($aliases);
+
   }
 
   public function boot()
@@ -23,9 +46,9 @@ class BlogServiceProvider extends ServiceProvider
 
     $this->bootPublishes();
 
-   $this->loadViewsFrom(__DIR__.'/../resources/views', 'blog');
+    $this->loadViewsFrom(__DIR__.'/../resources/views', 'blog');
 
-   $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+    $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 
     $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
@@ -53,6 +76,10 @@ class BlogServiceProvider extends ServiceProvider
 
       $this->publishes([
         __DIR__.'/../config/blog.php' => config_path('blog.php'),
+      ]);
+
+      $this->publishes([
+        __DIR__.'/../config/blog.models.php' => config_path('blog.models.php'),
       ]);
 
     }
