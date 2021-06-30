@@ -14,19 +14,13 @@ class BlogController extends Controller
 {
 
 
-    /* even though the page model is defined here, the bindings swap the class at runtime */
     public function index() {
 
         headTitle()->add('Blog'); //$page->title);
 
-
-        // if (request()->wantsJson()) {
-        //     return view('blog::index')->withModel($page);
-        // } else {
-
         $posts = app('AscentCreative\Blog\Models\Post')::paginate(12);
         return view('blog::public.index')->with('posts', $posts); //->withModel($page);
-        //}
+      
     
     }
 
@@ -63,14 +57,8 @@ class BlogController extends Controller
     /* even though the page model is defined here, the bindings swap the class at runtime */
     public function show(Post $post) {
 
-        // dd($post);
         headTitle()->add($post->title);
-
-        // if (request()->wantsJson()) {
-        //     return view('cms::public.pages.modal')->withModel($post);
-        // } else {
-            return view('blog::public.show')->withModel($post);
-       // }
+        return view('blog::public.show')->withModel($post);
     
     }
 
