@@ -1,7 +1,15 @@
 @extends('blog::base')
 
 @section('pagehead')
-    <H1>{{ $model->title }}</H1>
+    <div>
+        <H1>{{ $model->title }}</H1>
+        <div>
+            {!! $model->authorLinks !!} |  {{ ($model->publish_start ?? $model->created_at)->toFormattedDateString() }}
+        </div>
+        <div>
+            Tagged: {!! $model->tagLinks !!} 
+        </div>
+    </div>
 @endsection
 
 @section('pagecontent')
