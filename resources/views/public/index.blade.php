@@ -1,7 +1,7 @@
 @extends('blog::base')
 
 @section('pagehead')
-    <H1>{{ $title ?? 'BLOG' }}</H1>
+    <H1>{{ $title ?? config('blog.blog_title') }}</H1>
 @endsection
 
 @section('pagecontent')
