@@ -24,7 +24,7 @@ class BlogController extends Controller
         //     return view('blog::index')->withModel($page);
         // } else {
 
-        $posts = Post::paginate(12);
+        $posts = app('AscentCreative\Blog\Models\Post')::paginate(12);
         return view('blog::public.index')->with('posts', $posts); //->withModel($page);
         //}
     
@@ -36,7 +36,7 @@ class BlogController extends Controller
         $title = 'Posts tagged "' . $tag->tag . '"';
         headTitle()->add($title);
 
-        $posts = Post::whereHas('tags', function($query) use ($tag) {
+        $posts = app('AscentCreative\Blog\Models\Post')::whereHas('tags', function($query) use ($tag) {
              $query->where('slug', $tag->slug);
         })->paginate(12);
 
@@ -50,7 +50,7 @@ class BlogController extends Controller
         $title = 'Posts of type "' . $type->type . '"';
         headTitle()->add($title);
 
-        $posts = Post::whereHas('type', function($query) use ($type) {
+        $posts = app('AscentCreative\Blog\Models\Post')::whereHas('type', function($query) use ($type) {
              $query->where('slug', $type->slug);
         })->paginate(12);
 
