@@ -20,5 +20,17 @@ class Tag extends Base
 
     public $slug_source = 'tag';
 
+    public function posts() {
+        return $this->belongsToMany(Post::class, 'blog_post_tags');
+    }
+
+    public function getLinkWithCountAttribute() {
+        return view('blog::tag.link', ['tag'=>$this, 'count'=>true]);
+    }
+
+    public function getLinkAttribute() {
+        return view('blog::tag.link', ['tag'=>$this, 'count'=>false]);
+    }
+
 }
 

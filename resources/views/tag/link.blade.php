@@ -1,0 +1,1 @@
+<A href="{{ route('blog.tag', ['tag'=>$tag]) }}" class="tag-link">{{ $tag->tag }}@if($count)<span class="tag-link-count">{{ $tag->posts->count() }}</span>@endif</A>

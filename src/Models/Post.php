@@ -34,6 +34,16 @@ class Post extends Base
         return $this->belongsToMany(Tag::class, 'blog_post_tags');
     }
 
+    public function getTagLinksAttribute() {
+
+        $ary = [];
+        foreach($this->tags as $tag) {
+            $ary[] = $tag->link;
+        }
+        return join(', ', $ary);
+
+    }
+
     public function type() {
         return $this->belongsTo(Type::class);
     }

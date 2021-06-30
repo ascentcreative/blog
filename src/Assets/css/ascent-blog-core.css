@@ -13,9 +13,6 @@
 .index-item.post {
     box-sizing: border-box; 
     border-bottom: 2px solid;
-
-
-
 }
 
 .index-item.post > * {
@@ -55,6 +52,39 @@
     flex-grow: 1;
 }
 
-.sidebar {
+.sidebar-panel .tag-link {
     background: #ccc;
+    color: white;
+    display: inline-block;
+    padding: 3px 5px;
+    margin: 3px;
+    border-radius: 5px;
+
+    font-size: 0.8rem;
+    font-weight: 700 !important;
+}
+
+.sidebar-panel .tag-link-count {
+    display: inline-block;
+    margin-left: 10px;
+   
+
+}
+
+.sidebar-panel .type-link {
+    background: #ccc;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 5px;
+    margin: 3px;
+    border-radius: 5px;
+
+    font-size: 0.8rem;
+    font-weight: 700 !important;
+}
+
+.sidebar-panel .type-link-count {
+    display: inline-block;
+    margin-left: 10px;
 }

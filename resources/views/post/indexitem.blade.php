@@ -22,10 +22,7 @@
 
             @if($post->tags->count() > 0)
                 <div>
-                    Tagged: 
-                    @foreach($post->tags as $tag)
-                        <A class="tag" href="/blog/tag/{{$tag->slug}}">{{$tag->tag}}</A>
-                    @endforeach
+                    Tagged: {!! $post->tag_links !!}
                 </div>
             @endif
            

@@ -41,6 +41,9 @@
 
             <div class="sidebar" id="sidebar-bottom" sxtyle="background: #efefef;">
 
+                @php $panel = new AscentCreative\Blog\Sidebar\Tags(); echo $panel->render() @endphp
+                @php $panel = new AscentCreative\Blog\Sidebar\Types(); echo $panel->render() @endphp
+
                 {{-- @foreach($model->panels('bottom')->get() as $panel)
                    {{ $panel->render() }}
                 @endforeach --}}

@@ -1,0 +1,1 @@
+<A href="{{ route('blog.type', ['type'=>$type]) }}" class="type-link">{{ $type->type }}<span class="type-link-count">{{ $type->posts->count() }}</A>

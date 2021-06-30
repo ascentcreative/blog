@@ -17,5 +17,20 @@ class Type extends Base
 
     public $fillable = ['type', 'slug'];
 
+
+    public function posts() {
+        return $this->hasMany(Post::class);
+    }
+
+
+    public function getLinkWithCountAttribute() {
+        return view('blog::type.link', ['type'=>$this, 'count'=>true]);
+    }
+
+    public function getLinkAttribute() {
+        return view('blog::type.link', ['type'=>$this, 'count'=>false]);
+    }
+
+
 }
 

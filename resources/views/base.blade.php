@@ -3,3 +3,4 @@
 @push('styles')
     @style('/vendor/ascent/blog/css/ascent-blog-core.css')
 @endpush
+

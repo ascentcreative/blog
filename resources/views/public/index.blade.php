@@ -1,7 +1,7 @@
 @extends('blog::base')
 
 @section('pagehead')
-    <H1>BLOG</H1>
+    <H1>{{ $title ?? 'BLOG' }}</H1>
 @endsection
 
 @section('pagecontent')
@@ -10,11 +10,13 @@
 
             <div class="content post-grid">
 
-                @foreach(Post::all() as $post) 
+                @foreach($posts as $post) 
                     @includeFirst(['blog.post.indexitem', 'blog::post.indexitem'], ['post' => $post])
                 @endforeach
 
             </div>
+
+            {{ $posts->links() }}
 
             {{-- Should we really be wrapping all the panels in a div? --}}
             {{-- Might need to break out on mobile --}}
@@ -25,6 +27,8 @@
             {{-- Different arrays? Flag on DB record? --}}
             <div class="sidebar" id="sidebar-top" xstyle="background: #efefef;">
 
+               
+
                 {{-- @foreach($model->panels('top')->get() as $panel)
                     {{ $panel->render() }}
                 @endforeach --}}
@@ -32,6 +36,9 @@
             </div>
 
             <div class="sidebar" id="sidebar-bottom" sxtyle="background: #efefef;">
+
+                @php $panel = new AscentCreative\Blog\Sidebar\Tags(); echo $panel->render() @endphp
+                @php $panel = new AscentCreative\Blog\Sidebar\Types(); echo $panel->render() @endphp
 
                 {{-- @foreach($model->panels('bottom')->get() as $panel)
                    {{ $panel->render() }}
