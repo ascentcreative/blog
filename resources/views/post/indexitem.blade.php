@@ -16,7 +16,7 @@
         
         <div class="small">
            
-            {{ $post->authorNames }} 
+            {!! $post->authorLinks !!}
             
             {{ ($post->publish_start ?? $post->created_at)->toFormattedDateString() }}
 

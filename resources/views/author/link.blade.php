@@ -1,0 +1,1 @@
+<A href="{{ route('blog.author', ['author'=>$author]) }}" class="author-link">{{ $author->name }}@if($count)<span class="author-link-count">{{ $author->posts->count() }}</span>@endif</A>

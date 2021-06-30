@@ -53,5 +53,16 @@ class Post extends Base
                         ->withPivot('sort')->orderBy('sort');
     }
 
+    public function getAuthorLinksAttribute() {
+
+        $ary = [];
+        foreach($this->authors as $author) {
+            $ary[] = $author->link;
+        }
+        return join(', ', $ary);
+
+
+    }
+
 }
 

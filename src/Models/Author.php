@@ -23,5 +23,19 @@ class Author extends Base
 
     public $fillable = ['name', 'slug', 'bio'];
 
+
+    public function posts() {
+        return $this->belongsToMany(Post::class, 'blog_post_authors');
+    }
+
+
+    public function getLinkWithCountAttribute() {
+        return view('blog::author.link', ['author'=>$this, 'count'=>true]);
+    }
+
+    public function getLinkAttribute() {
+        return view('blog::author.link', ['author'=>$this, 'count'=>false]);
+    }
+
 }
 

@@ -11,6 +11,8 @@ Route::middleware(['web'])->namespace('AscentCreative\Blog\Controllers')->group(
 
     Route::get('/' . $blog_path . '/tag/{tag:slug}', [AscentCreative\Blog\Controllers\BlogController::class, 'tag'])->name('blog.tag');
     Route::get('/' . $blog_path . '/type/{type:slug}', [AscentCreative\Blog\Controllers\BlogController::class, 'type'])->name('blog.type');
+    Route::get('/' . $blog_path . '/author/{author:slug}', [AscentCreative\Blog\Controllers\BlogController::class, 'author'])->name('blog.author');
+
 
     /** Admin Routes */
 

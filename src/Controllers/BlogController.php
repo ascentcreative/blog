@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 
+use AscentCreative\Blog\Models\Author;
 use AscentCreative\Blog\Models\Tag;
 use AscentCreative\Blog\Models\Type;
 use AscentCreative\Blog\Models\Post;
@@ -46,6 +47,19 @@ class BlogController extends Controller
 
         $posts = app('AscentCreative\Blog\Models\Post')::whereHas('type', function($query) use ($type) {
              $query->where('slug', $type->slug);
+        })->paginate(12);
+
+        return view('blog::public.index')->with('posts', $posts)->with('title', $title); 
+
+    }
+
+    public function author(Author $author) {
+
+        $title = 'Posts by ' . $author->name;
+        headTitle()->add($title);
+
+        $posts = app('AscentCreative\Blog\Models\Post')::whereHas('authors', function($query) use ($author) {
+             $query->where('slug', $author->slug);
         })->paginate(12);
 
         return view('blog::public.index')->with('posts', $posts)->with('title', $title); 
