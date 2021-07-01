@@ -15,7 +15,7 @@ class PostController extends AdminBaseController
     static $modelClass = 'Post';
     static $bladePath = "blog::admin.posts";
 
-    public $indexSort = [ ['publish_start', 'DESC'], ['created_at', 'DESC'], 'title'];
+    //public $indexSort = [ ['publish_start', 'DESC'], ['created_at', 'DESC'], 'title'];
     public $indexSearchFields = ['title', 'content'];
 
     public $ignoreScopes = ['published'];
