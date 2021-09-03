@@ -17,6 +17,8 @@ class Type extends Base
 
     public $fillable = ['type', 'slug'];
 
+    public $slug_source = 'type';
+
 
     public function posts() {
         return $this->hasMany(Post::class);

@@ -30,6 +30,12 @@ Route::middleware(['web'])->namespace('AscentCreative\Blog\Controllers')->group(
             'index' => 'admin.blog.authors' 
         ]);
 
+        Route::get('/types/autocomplete', [AscentCreative\Blog\Controllers\Admin\TypeController::class, 'autocomplete']);
+        Route::get('/types/{type}/delete', [AscentCreative\Blog\Controllers\Admin\TypeController::class, 'delete']);
+        Route::resource('/types', TypeController::class)->names([
+            'index' => 'admin.blog.types' 
+        ]);
+
     });
 
 
