@@ -18,5 +18,5 @@ return [
         'AscentCreative\Blog\Sidebar\Types',
     ],
 
-   
+   // Test
 ];
