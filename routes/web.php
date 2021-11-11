@@ -35,6 +35,7 @@ Route::middleware(['web'])->namespace('AscentCreative\Blog\Controllers')->group(
         Route::resource('/types', TypeController::class)->names([
             'index' => 'admin.blog.types'  
         ]);
+        //Test
 
     });
 
