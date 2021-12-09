@@ -18,5 +18,10 @@ return [
         'AscentCreative\Blog\Sidebar\Types',
     ],
 
+    'image_specs' => [
+        'header' => 'blog-header',
+        'thumbnail' => 'blog-thumbnail'
+    ]
+
    // Test
 ];
