@@ -11,7 +11,7 @@
             <div class="content post-grid">
 
                 @foreach($posts as $post) 
-                    @includeFirst(['blog.post.indexitem', 'blog::post.indexitem'], ['post' => $post])
+                    @includeFirst(['blog.post.indexitem', 'blog::post.indexitem'], ['post' => $post, 'matchHeight'=>true])
                 @endforeach
 
             </div>
