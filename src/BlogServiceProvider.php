@@ -52,6 +52,8 @@ class BlogServiceProvider extends ServiceProvider
 
     $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
+    $this->bootAssets();
+
     
   }
 
@@ -63,7 +65,17 @@ class BlogServiceProvider extends ServiceProvider
   }
 
 
+  /**
+   * inject required css / js into main view stacks
+   * 
+   * @return [type]
+   */
+  public function bootAssets() {
 
+       app('AscentCreative\CMS\Helpers\PackageAssets')
+            ->addStylesheet('/vendor/ascent/blog/css/ascent-blog-core.css');
+
+  }
 
   
 
