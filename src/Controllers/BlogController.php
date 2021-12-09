@@ -17,9 +17,9 @@ class BlogController extends Controller
 
     public function index() {
 
-        headTitle()->add('Blog'); //$page->title);
+        headTitle()->add(config('blog.blog_title') ?? 'Blog'); //$page->title);
 
-        $posts = app('AscentCreative\Blog\Models\Post')::paginate(12);
+        $posts = app('AscentCreative\Blog\Models\Post')::paginate(3);
         return view('blog::public.index')->with('posts', $posts); //->withModel($page);
       
     
