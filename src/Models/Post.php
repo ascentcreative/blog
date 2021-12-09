@@ -26,9 +26,17 @@ class Post extends Base
 
     public $image_specs = ['blog-thumbnail'];
 
-    public function getUrlAttribute() {
-        return '/blog/' . $this->slug;
+    // public function getUrlAttribute() {
+    //     return '/blog/' . $this->slug;
+    // }
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->image_specs = config('blog.image_specs'); // get these from the config file. 
+
     }
+
 
     public function tags() {
         return $this->belongsToMany(Tag::class, 'blog_post_tags');
