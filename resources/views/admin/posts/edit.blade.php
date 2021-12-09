@@ -75,6 +75,12 @@
                     wrapper="none"/>
                 @break
 
+                @case('stackeditor')
+                    {{-- Used to prevent errors if the stackeditor package isn't installed --}}
+                   @include('cms::stackeditor.proxy')
+                @break
+
+
             @endswitch
 
             {{-- 

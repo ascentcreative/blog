@@ -28,6 +28,10 @@
                             @include('cms::stack.render', ['content' => $model->content])
                     @break
 
+                    @case('stackeditor')
+                            @include('stackeditor::render', ['content' => $model->content])
+                    @break
+
                 @endswitch
 
             </div>
