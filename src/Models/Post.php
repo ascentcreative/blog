@@ -14,11 +14,13 @@ use AscentCreative\Blog\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use Laravel\Scout\Searchable;
+
 use Illuminate\Support\Facades\Storage;
 
 class Post extends Base
 {
-    use HasFactory, HasSlug, HasImages, HasMetadata, Publishable;
+    use HasFactory, HasSlug, HasImages, HasMetadata, Publishable, Searchable;
 
     public $table = 'blog_posts';
 
@@ -26,9 +28,9 @@ class Post extends Base
 
     public $image_specs = ['blog-thumbnail'];
 
-    // public function getUrlAttribute() {
-    //     return '/blog/' . $this->slug;
-    // }
+    public function getUrlAttribute() {
+        return route('blog.post', ['post'=>$this]);
+    }
 
     public function __construct() {
         parent::__construct();
