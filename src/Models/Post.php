@@ -26,6 +26,10 @@ class Post extends Base
 
     public $fillable = ['title', 'slug', 'publish_date', 'published', 'content', 'summary', 'type_id'];
 
+    public $casts = [
+        'content' => 'array'
+    ];
+
     public $image_specs = ['blog-thumbnail'];
 
     public function getUrlAttribute() {
