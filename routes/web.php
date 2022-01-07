@@ -16,7 +16,7 @@ Route::middleware(['web'])->namespace('AscentCreative\Blog\Controllers')->group(
 
     /** Admin Routes */
 
-    Route::prefix('admin/blog')->namespace('Admin')->middleware(['useAdminLogin', 'auth', 'can:administer'])->group(function() {
+    Route::prefix('admin/blog')->namespace('Admin')->middleware(['auth', 'can:administer'])->group(function() {
 
         Route::get('/posts/autocomplete', [AscentCreative\Blog\Controllers\Admin\PostController::class, 'autocomplete']);
         Route::get('/posts/{post}/delete', [AscentCreative\Blog\Controllers\Admin\PostController::class, 'delete']);
