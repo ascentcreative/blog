@@ -33,10 +33,17 @@
     display: block;
     width: 100%;
     background: #ececec;
-    aspect-ratio: 600/300;
+    /* aspect-ratio: 600/300; */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.ii-post-thumbnail:after {
+    content: '';
+    width: 100%;
+    display: block;
+    padding-top: 50%;
 }
 
 .ii-post-title {
