@@ -13,12 +13,14 @@ class Types extends Base {
     }
 
     public function isRenderable() {
-        return true;
+        return Type::whereHas('posts')->count() > 0;
     }
 
     public function render() {
 
-        return view('blog::sidebar.types');
+        if($this->isRenderable()) { 
+            return view('blog::sidebar.types');
+        }
 
     }
 
