@@ -19,7 +19,7 @@ class BlogController extends Controller
 
         headTitle()->add(config('blog.blog_title') ?? 'Blog'); //$page->title);
 
-        $posts = app('AscentCreative\Blog\Models\Post')::paginate(3);
+        $posts = app('AscentCreative\Blog\Models\Post')::paginate(12);
         return view('blog::public.index')->with('posts', $posts); //->withModel($page);
       
     
