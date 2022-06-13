@@ -28,6 +28,6 @@
 </div>
 
 <div class="flex-center flex p-3">
-    <A href="{{ route('blog.home') }}" class="btn button btn-primary">View all News</A>
+    <A href="{{ route('blog.home') }}" class="btn button btn-primary">View all {{ Str::plural(config('blog.blog_post_name')) }}</A>
 </div>
 
