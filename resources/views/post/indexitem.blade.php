@@ -4,11 +4,12 @@
     @php 
     
         $spec = config('blog.image_specs.thumbnail');
-        $test = imageUrl($spec, $post) 
+      
+        $img = imageUrl($spec, $post);
         
     @endphp
 
-    <A class="ii-post-thumbnail" style="background-image: url('{{ imageUrl($spec, $post)}}')" href="{{ route('blog.post', ['post'=>$post]) }}">
+    <A class="ii-post-thumbnail @if($img) has-image @else no-image @endif" style="@if($img) background-image: url('{{ $img }}'); @endif" href="{{ route('blog.post', ['post'=>$post]) }}">
 
     </A>
 
