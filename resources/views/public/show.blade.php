@@ -3,12 +3,19 @@
 @section('pagehead')
     <div>
         <H1>{{ $model->title }}</H1>
-        <div>
-            {!! $model->authorLinks !!} |  {{ ($model->publish_start ?? $model->created_at)->toFormattedDateString() }}
+
+        <div class="blog-head-authorship">
+            @if($auth = $model->authorLinks)
+                {!! $auth !!} |
+            @endif  
+            {{ ($model->publish_start ?? $model->created_at)->toFormattedDateString() }}
         </div>
-        <div>
-            Tagged: {!! $model->tagLinks !!} 
-        </div>
+
+        @if($links = $model->tagLinks)
+            <div class="blog-head-tags">
+                Tagged: {!! $links !!} 
+            </div>
+        @endif
     </div>
 @endsection
 
