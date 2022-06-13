@@ -1,7 +1,7 @@
 @extends('cms::sidebar.panel.base')
 
 @section('panel-header')
-   Post Types
+   Posts by Type
 @overwrite
 
 @section('panel-body')

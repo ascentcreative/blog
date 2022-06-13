@@ -1,7 +1,7 @@
 @extends('cms::sidebar.panel.base')
 
 @section('panel-header')
-   Tags
+   Posts by Tag
 @overwrite
 
 @section('panel-body')
