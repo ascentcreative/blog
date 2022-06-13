@@ -5,6 +5,7 @@ return [
     // URI Segment for publc site:
     'blog_path' => 'blog',
     'blog_title' => 'Blog',
+    'blog_post_name' => 'post',
 
     'wrapper_blade' => 'cms.page.show',
 
