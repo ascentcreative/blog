@@ -11,6 +11,8 @@ use AscentCreative\Blog\Models\Tag;
 use AscentCreative\Blog\Models\Type;
 use AscentCreative\Blog\Models\Post;
 
+use Illuminate\Support\Str;
+
 class BlogController extends Controller
 {
 
@@ -42,7 +44,8 @@ class BlogController extends Controller
 
     public function type(Type $type) {
 
-        $title = 'Posts of type "' . $type->type . '"';
+        // $title = 'Posts of type "' . $type->type . '"';
+        $title = Str::plural($type->type);
         headTitle()->add($title);
 
         $posts = app('AscentCreative\Blog\Models\Post')::whereHas('type', function($query) use ($type) {
