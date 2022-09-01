@@ -1,6 +1,8 @@
 @extends('blog::base')
 
 @section('pagehead')
+
+
     <div>
         <H1>{{ $model->title }}</H1>
 
@@ -25,7 +27,7 @@
 
             <div class="content">
 
-                @switch(config('cms.content_editor'))
+                @switch(config('blog.content_editor', config('cms.content_editor')))
 
                     @case('ckeditor')
                         {!! $model->content !!}
