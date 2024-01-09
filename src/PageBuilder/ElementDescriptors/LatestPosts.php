@@ -1,8 +1,8 @@
 <?php
 
-namespace AscentCreative\Blog\PageBuilder\BlockDescriptors;
+namespace AscentCreative\Blog\PageBuilder\ElementDescriptors;
 
-use AscentCreative\PageBuilder\BlockDescriptors\AbstractDescriptor; 
+use AscentCreative\PageBuilder\ElementDescriptors\AbstractDescriptor; 
 
 class LatestPosts extends AbstractDescriptor { 
 

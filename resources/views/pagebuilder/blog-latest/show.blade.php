@@ -1,4 +1,8 @@
-<div class="text-center"> <h2>{!! $block->title ?? 'Latest Posts' !!}</h2> </div>
+@extends('pagebuilder::components.element.show')
+
+@section('content')
+
+<div class="text-center"> <h2>{!! $value->title ?? 'Latest Posts' !!}</h2> </div>
 
 @php
     
@@ -31,3 +35,5 @@
     <A href="{{ route('blog.home') }}" class="btn button btn-primary">View all {{ Str::plural(config('blog.blog_post_name')) }}</A>
 </div>
 
+
+@overwrite
