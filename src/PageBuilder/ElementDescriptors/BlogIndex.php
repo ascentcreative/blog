@@ -18,7 +18,7 @@ class BlogIndex extends AbstractDescriptor {
         
         $postsQry = app('AscentCreative\Blog\Models\Post')::query();
 
-        if($value->post_types) {
+        if($value->post_types ?? null) {
             $postsQry = $postsQry->whereIn('type_id', $value->post_types);
         }
                            
