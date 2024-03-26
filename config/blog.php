@@ -8,6 +8,7 @@ return [
     'blog_path' => 'blog',
     'blog_title' => 'Blog',
     'blog_post_name' => 'post',
+    'blog_disable_index' => false,
 
     'wrapper_blade' => 'cms.page.show',
 

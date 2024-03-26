@@ -6,7 +6,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['web'])->namespace('AscentCreative\Blog\Controllers')->group(function () {
 
     $blog_path = config('blog.blog_path');
-    Route::get('/' . $blog_path, [AscentCreative\Blog\Controllers\BlogController::class, 'index'])->name('blog.home');
+    if(!config('blog.blog_disable_index')) {
+        Route::get('/' . $blog_path, [AscentCreative\Blog\Controllers\BlogController::class, 'index'])
+            ->name('blog.home');
+    }
     Route::get('/' . $blog_path . '/{post:slug}', [AscentCreative\Blog\Controllers\BlogController::class, 'show'])->name('blog.post');
 
     Route::get('/' . $blog_path . '/tag/{tag:slug}', [AscentCreative\Blog\Controllers\BlogController::class, 'tag'])->name('blog.tag');
