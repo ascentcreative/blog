@@ -75,7 +75,7 @@ class BlogController extends Controller
     public function show(Post $post) {
 
         headTitle()->add($post->title);
-        return view('blog::public.show')->withModel($post);
+        return view(config('blog.post_show_blade'))->withModel($post);
     
     }
 

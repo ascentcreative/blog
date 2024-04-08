@@ -11,6 +11,7 @@ return [
     'blog_disable_index' => false,
 
     'wrapper_blade' => 'cms.page.show',
+    'post_show_blade' => 'blog::public.show',
 
     'index_sidebar' => [
         'AscentCreative\Blog\Sidebar\Tags',
