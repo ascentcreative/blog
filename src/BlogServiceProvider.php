@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Routing\Router;
 
+use Illuminate\Pagination\Paginator;
+
 class BlogServiceProvider extends ServiceProvider
 {
   public function register()
@@ -43,6 +45,8 @@ class BlogServiceProvider extends ServiceProvider
 
   public function boot()
   {
+
+    Paginator::useBootstrapFour();
 
     $this->bootPublishes();
 

@@ -18,7 +18,11 @@
 
             </div>
 
+            <div class="flex flex-center p-3">
+
             {{ $posts->links() }}
+
+            </div>
 
             {{-- Should we really be wrapping all the panels in a div? --}}
             {{-- Might need to break out on mobile --}}
